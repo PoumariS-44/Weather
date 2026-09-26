@@ -2,7 +2,7 @@
 // ==========================================
 // ELEMENTS
 // ==========================================
-const API_KEY = "f2dd35545a1e4a9fbe5141417262209";
+
 const weatherForm = document.getElementById("weatherForm");
 const cityInput = document.getElementById("cityInput");
 const searchBtn = document.getElementById("searchBtn");
