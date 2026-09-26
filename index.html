@@ -1,218 +1,102 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Weather Dashboard</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
     <div class="container">
 
-        <!-- Header -->
-        <header class="header">
-            <div>
-                <p class="tag">LIVE WEATHER</p>
-                <h1>Weather Dashboard</h1>
-                <p class="subtitle">
-                    Get real-time weather information for any city.
-                </p>
-            </div>
-        </header>
+        <h1>Weather Dashboard</h1>
 
-        <!-- Search -->
-        <section class="search-section">
-            <form id="weatherForm">
+        <p class="subtitle">
+            Check live weather information for any city
+        </p>
 
-                <div class="search-box">
-                    <span class="search-icon">⌕</span>
 
-                    <input
-                        type="text"
-                        id="cityInput"
-                        placeholder="Enter city name..."
-                        autocomplete="off"
-                    >
+        <!-- SEARCH -->
 
-                    <button type="submit" id="searchBtn">
-                        Search
-                    </button>
-                </div>
+        <div class="search-box">
 
-            </form>
-        </section>
+            <input
+                type="text"
+                id="cityInput"
+                placeholder="Enter city name"
+            >
 
-        <!-- Message -->
-        <p id="message" class="message"></p>
+            <button onclick="getWeather()">
+                Search
+            </button>
 
-        <!-- Loading -->
-        <div id="loading" class="loading hidden">
-            <div class="spinner"></div>
-            <p>Fetching weather data...</p>
         </div>
 
-        <!-- Weather Dashboard -->
-        <main id="weatherDashboard" class="weather-dashboard hidden">
 
-            <!-- Main Weather Card -->
-            <section class="main-card">
+        <!-- ERROR MESSAGE -->
 
-                <div class="location">
-                    <span>📍</span>
-                    <div>
-                        <h2 id="cityName">City</h2>
-                        <p id="countryName">Country</p>
-                    </div>
+        <p id="error"></p>
+
+
+        <!-- WEATHER CARD -->
+
+        <div class="weather-card" id="weatherCard">
+
+            <h2 id="city">City</h2>
+
+            <img
+                id="weatherIcon"
+                src=""
+                alt="Weather icon"
+            >
+
+            <h3 id="temperature">--°C</h3>
+
+            <p id="description">Weather</p>
+
+
+            <div class="weather-info">
+
+                <div>
+                    <span>💧</span>
+                    <p>Humidity</p>
+                    <strong id="humidity">--%</strong>
                 </div>
 
-                <div class="weather-main">
 
-                    <div class="weather-icon" id="weatherIcon">
-                        ☀️
-                    </div>
-
-                    <div class="temperature">
-                        <span id="temperature">--</span>
-                        <sup>°C</sup>
-                    </div>
-
+                <div>
+                    <span>💨</span>
+                    <p>Wind Speed</p>
+                    <strong id="wind">-- km/h</strong>
                 </div>
 
-                <p id="weatherDescription" class="weather-description">
-                    Weather condition
-                </p>
 
-            </section>
-
-            <!-- Weather Metrics -->
-            <section class="metrics">
-
-                <div class="metric-card">
-                    <div class="metric-icon">🌡️</div>
-
-                    <div>
-                        <p>Temperature</p>
-                        <h3>
-                            <span id="temperatureMetric">--</span> °C
-                        </h3>
-                    </div>
+                <div>
+                    <span>🌡️</span>
+                    <p>Feels Like</p>
+                    <strong id="feelsLike">--°C</strong>
                 </div>
 
-                <div class="metric-card">
-                    <div class="metric-icon">💧</div>
+            </div>
 
-                    <div>
-                        <p>Humidity</p>
-                        <h3>
-                            <span id="humidity">--</span> %
-                        </h3>
-                    </div>
-                </div>
+        </div>
 
-                <div class="metric-card">
-                    <div class="metric-icon">💨</div>
 
-                    <div>
-                        <p>Wind Speed</p>
-                        <h3>
-                            <span id="windSpeed">--</span> km/h
-                        </h3>
-                    </div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-icon">🌧️</div>
-
-                    <div>
-                        <p>Rain</p>
-                        <h3>
-                            <span id="rain">--</span> mm
-                        </h3>
-                    </div>
-                </div>
-
-            </section>
-
-            <!-- Additional Information -->
-            <section class="details-card">
-
-                <h2>Weather Details</h2>
-
-                <div class="details-grid">
-
-                    <div class="detail">
-                        <span>☁️</span>
-                        <div>
-                            <p>Cloud Cover</p>
-                            <strong>
-                                <span id="cloudCover">--</span> %
-                            </strong>
-                        </div>
-                    </div>
-
-                    <div class="detail">
-                        <span>🌬️</span>
-                        <div>
-                            <p>Wind Direction</p>
-                            <strong>
-                                <span id="windDirection">--</span>°
-                            </strong>
-                        </div>
-                    </div>
-
-                    <div class="detail">
-                        <span>🕒</span>
-                        <div>
-                            <p>Updated</p>
-                            <strong id="updatedTime">--</strong>
-                        </div>
-                    </div>
-
-                    <div class="detail">
-                        <span>📡</span>
-                        <div>
-                            <p>Data Source</p>
-                            <strong>Open-Meteo</strong>
-                        </div>
-                    </div>
-
-                </div>
-
-            </section>
-
-        </main>
-
-        <!-- Initial State -->
-        <section id="welcome" class="welcome">
-
-            <div class="welcome-icon">🌤️</div>
-
-            <h2>Search for a city</h2>
-
-            <p>
-                Enter a city name above to view its current weather conditions.
-            </p>
-
-        </section>
-
-        <!-- Footer -->
         <footer>
-            <p>
-                Weather Dashboard • Built with HTML, CSS & JavaScript
-            </p>
+            Weather Dashboard
         </footer>
 
     </div>
-
     <script src="script.js"></script>
 
 </body>
 
 </html>
-```
